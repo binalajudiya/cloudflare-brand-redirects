@@ -48,34 +48,41 @@ jobs:
 
           # Step A: Fully sync KV (delete old + upload new)
 
-          echo "  Syncing KV data..."
+          echo "  Wiping all KV keys in namespace: $KV_NAMESPACE_ID..."
 
-          # List desired keys from JSON
-          jq -r '.[].id' brands_data.json | sort > desired_keys.txt
+          # Get all existing keys (handles up to 10,000 via pagination if needed)
+          PAGE=1
+          while true; do
+            KEYS=$(wrangler kv key list --namespace-id "$KV_NAMESPACE_ID" --preview=false --page $PAGE)
+            COUNT=$(echo "$KEYS" | jq length)
 
-          # List existing keys from KV
-          wrangler kv key list --namespace-id "$KV_NAMESPACE_ID" --preview=false | jq -r '.[].name' | sort > existing_keys.txt
-
-          # Find keys in KV but not in JSON
-          comm -23 existing_keys.txt desired_keys.txt > keys_to_delete.txt
-
-          # Delete stale keys
-          while read -r key; do
-            if [[ -n "$key" ]]; then
-              echo "    Deleting stale KV key: $key"
-              wrangler kv key delete "$key" --namespace-id "$KV_NAMESPACE_ID"
+            # Break if no more keys
+            if [ "$COUNT" -eq 0 ]; then
+              break
             fi
-          done < keys_to_delete.txt
 
-          # Upload fresh keys
+            # Delete keys on this page
+            echo "$KEYS" | jq -r '.[].name' | while read -r key; do
+              echo "    Deleting KV key: $key"
+              wrangler kv key delete "$key" --namespace-id "$KV_NAMESPACE_ID"
+            done
+
+            PAGE=$((PAGE + 1))
+          done
+
+          echo "  KV wiped. Uploading fresh data..."
+
+          # Upload all keys from brands_data.json
           jq -c '.[]' brands_data.json | while read -r line; do
             ID=$(echo "$line" | jq -r '.id')
             VALUE=$(echo "$line" | jq -c '{baseUrl: .baseUrl, fullQueryStringTemplate: .fullQueryStringTemplate}')
+            
             echo "    Uploading KV key: $ID"
             wrangler kv key put "$ID" "$VALUE" --namespace-id "$KV_NAMESPACE_ID"
           done
 
-          echo "  KV sync complete."
+          echo "  KV sync complete for ${{ matrix.account }}."
+
 
           # Step B: Deploy Worker
           NAME="$(echo '${{ matrix.account }}' | tr '[:upper:]' '[:lower:]')-brand-redirect"
