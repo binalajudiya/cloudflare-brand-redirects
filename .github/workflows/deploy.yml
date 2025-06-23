@@ -72,7 +72,7 @@ jobs:
           # We use --name to give each Worker a unique name on Cloudflare (e.g., AU210-brand-redirect)
           # --account-id is essential here to deploy to the correct Cloudflare account.
           wrangler deploy --minify \
-            --name ${{ format('{0}-brand-redirect', matrix.account | lower) }} \
+            --name ${{ format('{0}-brand-redirect', toLower(matrix.account)) }} \
             --compatibility-date "2024-06-23" 
           
           # These echo statements MUST be on separate lines and not continue the previous command
