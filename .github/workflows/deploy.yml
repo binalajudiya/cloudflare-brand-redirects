@@ -68,12 +68,12 @@ jobs:
           echo "    KV data update complete for ${{ matrix.account }}."
 
           # --- Step B: Deploy Worker Code for the current account ---
-          # Deploy the Worker. The AU_PREFIX will be picked up from the current environment.
-          # We use --name to give each Worker a unique name on Cloudflare (e.g., AU210-brand-redirect)
-          # --account-id is essential here to deploy to the correct Cloudflare account.
+          # Generate lowercase name in shell
+          NAME="$(echo '${{ matrix.account }}' | tr '[:upper:]' '[:lower:]')-brand-redirect"
+
           wrangler deploy --minify \
-            --name ${{ format('{0}-brand-redirect', toLower(matrix.account)) }} \
-            --compatibility-date "2024-06-23" 
+            --name "$NAME" \
+            --compatibility-date "2024-06-23"
           
           # These echo statements MUST be on separate lines and not continue the previous command
           echo "--- Worker deployed for ${{ matrix.account }} ---"
