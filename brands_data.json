@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1",
+    "baseUrl": "https://crownplaylink.com/ob9ed888c",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=18&dyn3=14"
+  },
+  {
+    "id": "2",
+    "baseUrl": "https://fatfruit.live/n1dc132644",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=18&dyn3=14"
+  },
+  {
+    "id": "4",
+    "baseUrl": "https://clickjeetcitypartners.com/ab6ee468a",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-ex-{clickid}&dyn1={externalid}&dyn2=18&dyn3=14"
+  },
+  {
+    "id": "14",
+    "baseUrl": "https://staylinks.net/ab652b33b",
+    "fullQueryStringTemplate": "?pub_id={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=18&dyn3=14"
+  },
+  {
+    "id": "20",
+    "baseUrl": "https://metawin.com/t/ppc-aus",
+    "fullQueryStringTemplate": "?gclid={externalid}&dyn1={externalid}&dyn2=18&dyn3=14"
+  },
+  {
+    "id": "25",
+    "baseUrl": "https://trackallstar.com/click",
+    "fullQueryStringTemplate": "?o=1&a=35091&c=175&link_id=14&clickid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=18&dyn3=14"
+  },
+  {
+    "id": "27",
+    "baseUrl": "https://crownplaylink.com/o1d6d71e8",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-ex-{externalid}&dyn1={externalid}&dyn2=18&dyn3=14"
+  }
+]

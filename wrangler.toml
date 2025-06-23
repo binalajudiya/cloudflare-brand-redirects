@@ -1,0 +1,12 @@
+name = "my-brand-redirect-worker"
+main = "worker.js" # <<< Change this line from "src/index.js"
+compatibility_date = "2024-06-23" # Keep your chosen date or update to a recent one
+
+# KV Namespace binding
+[[kv_namespaces]]
+binding = "BRAND_LINKS"
+id = "58dec4cdd6224b1e8461b101de4763ae"
+
+# Environment variables for different deployments
+[vars]
+AU_PREFIX = "AU213" # This will be overridden per account/deployment
