@@ -58,10 +58,10 @@ jobs:
 
           # --- Step A: Update KV Data for the current account ---
           echo "    Clearing existing KV data in namespace: $KV_NAMESPACE_ID..."
-          # List and delete all KV keys in the given namespace
-          wrangler kv key list --namespace-id "$KV_NAMESPACE_ID" --preview=false | jq -r '.[].name' | while read -r key; do
+          # Delete all existing keys
+          wrangler kv:key list --namespace-id "$KV_NAMESPACE_ID" --preview=false | jq -r '.[].name' | while read -r key; do
             echo "      Deleting KV key: $key"
-            wrangler kv key delete "$key" --namespace-id "$KV_NAMESPACE_ID"
+            wrangler kv:key delete "$key" --namespace-id "$KV_NAMESPACE_ID"
           done
           echo "    KV data cleared."
 
