@@ -73,6 +73,8 @@ jobs:
           # --account-id is essential here to deploy to the correct Cloudflare account.
           wrangler deploy --minify \
             --name "${{ matrix.account }}-brand-redirect" \
-            --compatibility-date "2024-06-23" \
+            --compatibility-date "2024-06-23" 
+          
+          # These echo statements MUST be on separate lines and not continue the previous command
           echo "--- Worker deployed for ${{ matrix.account }} ---"
           echo "---------------------------------------------------"
