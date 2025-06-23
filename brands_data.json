@@ -2,16 +2,456 @@
   {
     "id": "1",
     "baseUrl": "https://crownplaylink.com/ob9ed888c",
-    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=18&dyn3=14"
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
   },
   {
     "id": "2",
     "baseUrl": "https://fatfruit.live/n1dc132644",
-    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=18&dyn3=14"
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
   },
   {
     "id": "3",
+    "baseUrl": "https://godofwinslink.com/oa58783ec",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "4",
     "baseUrl": "https://clickjeetcitypartners.com/ab6ee468a",
-    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-ex-{clickid}&dyn1={externalid}&dyn2=18&dyn3=14"
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-ex-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "5",
+    "baseUrl": "https://kinbetlink.com/o7cbfa04d",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "6",
+    "baseUrl": "https://luckycircus.partners/j5ecba549",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "7",
+    "baseUrl": "https://Luckydreams.info/kff904e12",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "8",
+    "baseUrl": "https://luckyones.site/k4f77fb7a",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "9",
+    "baseUrl": "https://lukki.site/k28695b48",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "10",
+    "baseUrl": "https://rooli.live/n1e97c4a1e",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "11",
+    "baseUrl": "https://slotmafia.io/n1822c1f65",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "12",
+    "baseUrl": "https://deeplogic.media/n122020579",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "13",
+    "baseUrl": "https://spiritcasinomedia.com/n1c32e3820",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "14",
+    "baseUrl": "https://staylinks.net/ab652b33b",
+    "fullQueryStringTemplate": "?pub_id={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "15",
+    "baseUrl": "https://vegasnow.info/k95aeb90f",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "16",
+    "baseUrl": "https://retrobetmedia.com/n15764b44f",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "17",
+    "baseUrl": "https://newgenaffmedia.com/m7bbcabd2",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "18",
+    "baseUrl": "https://jet4betmedia.com/n1a4c7eb8c",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "19",
+    "baseUrl": "https://rooster-partner.com/n15d262472",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "20",
+    "baseUrl": "https://metawin.com/t/ppc-aus",
+    "fullQueryStringTemplate": "?gclid={externalid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "21",
+    "baseUrl": "https://www.24casino.live/j4719208a",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "22",
+    "baseUrl": "https://balancer.ritzogo.com/m482d4a71",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "23",
+    "baseUrl": "https://fastpay-casino.live/a9b7f933d",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "24",
+    "baseUrl": "https://clickspinrise.com/acac07655",
+    "fullQueryStringTemplate": "?clickid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "25",
+    "baseUrl": "https://trackallstar.com/click",
+    "fullQueryStringTemplate": "?o=1&a=35091&c=175&link_id=14&clickid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "26",
+    "baseUrl": "https://tracking.heropartners.io/redirect.aspx",
+    "fullQueryStringTemplate": "?mid=67&sid=235189&pid=&affid=726421&cid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "27",
+    "baseUrl": "https://crownplaylink.com/o1d6d71e8",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-ex-{externalid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "28",
+    "baseUrl": "https://crowngoldlink.com/o48dd3e2e",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-ex-{externalid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "29",
+    "baseUrl": "https://skycrownlink.com/o99cbb141",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-ex-{externalid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "30",
+    "baseUrl": "https://godofwinslink.com/oef0d69fd",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-ex-{externalid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "31",
+    "baseUrl": "https://kinbetlink.com/o083414a6",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-ex-{externalid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "32",
+    "baseUrl": "https://vgso.virelon.com/",
+    "fullQueryStringTemplate": "?mid=169181_1511409&clickid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "33",
+    "baseUrl": "https://qwin.virelon.com/",
+    "fullQueryStringTemplate": "?mid=169181_1511411&clickid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "34",
+    "baseUrl": "https://spab.virelon.com/",
+    "fullQueryStringTemplate": "?mid=169181_1511414&clickid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "35",
+    "baseUrl": "https://slotlordsmedia.com/n133d6f53c",
+    "fullQueryStringTemplate": "?clickid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "36",
+    "baseUrl": "https://luckyfriendsplay.com/j569d7bf2",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "37",
+    "baseUrl": "https://thecc.media/a72bccbd2",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "38",
+    "baseUrl": "https://neospinlink.com/h85d291e9",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "39",
+    "baseUrl": "https://record.cybereliteaffiliates.com/_jqCgpfmr8waVAv0U_Fv2nWNd7ZgqdRLk/1/",
+    "fullQueryStringTemplate": "?payload={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "40",
+    "baseUrl": "https://all.monvaki.com/",
+    "fullQueryStringTemplate": "?mid=111369_1527758&clickid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "41",
+    "baseUrl": "https://partnersredirect.com/m8181d8e0&subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13",
+    "fullQueryStringTemplate": ""
+  },
+  {
+    "id": "42",
+    "baseUrl": "https://csn.fynkelto.com/",
+    "fullQueryStringTemplate": "?mid=63621_1529686&clickid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "43",
+    "baseUrl": "https://rbyc.fynkelto.com/",
+    "fullQueryStringTemplate": "?mid=258377_1516605&clickid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "44",
+    "baseUrl": "https://promocasinonic.com/a444f2cdd",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "45",
+    "baseUrl": "https://record.ltvaffiliates.com/_Pmpoc-du11fUOsjNOfgKeWNd7ZgqdRLk/1/",
+    "fullQueryStringTemplate": "?payload={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "46",
+    "baseUrl": "https://record.joinaff.com/_Vn9A062e18fpPzcob8OWA2Nd7ZgqdRLk/1/",
+    "fullQueryStringTemplate": "?pg=0&payload={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "47",
+    "baseUrl": "https://pachotraff.com/gfd600ff7",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "48",
+    "baseUrl": "https://billytraff.com/gaad84200",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "49",
+    "baseUrl": "https://record.grandeaffiliates.com/_qHysi646SQKqHnLpgoKC22Nd7ZgqdRLk/8/",
+    "fullQueryStringTemplate": "?pg=5&payload={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "50",
+    "baseUrl": "https://justcasino.info/ka532a0ae",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "51",
+    "baseUrl": "https://clickmoonpart.com/af915a5f3",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "52",
+    "baseUrl": "https://mgs.fynkelto.com/",
+    "fullQueryStringTemplate": "?mid=264616_1544469&clickid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "53",
+    "baseUrl": "https://slotloungemedia.com/n199797983",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "54",
+    "baseUrl": "https://dspn.servclick1move.com/",
+    "fullQueryStringTemplate": "?mid=253319_1591966&clickid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "55",
+    "baseUrl": "https://wildtornado.online/a5dc8ea17",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "56",
+    "baseUrl": "https://wldsn.xarvilo.com/",
+    "fullQueryStringTemplate": "?mid=229342_1363069&clickid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "57",
+    "baseUrl": "https://kngm.kngpulse.com/",
+    "fullQueryStringTemplate": "?mid=258633_1526298&clickid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "58",
+    "baseUrl": "https://zoometracker.com/d24aa6a90",
+    "fullQueryStringTemplate": "?clickid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "59",
+    "baseUrl": "https://spsgly.servclick1move.com/",
+    "fullQueryStringTemplate": "?mid=260573_1551577&clickid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "60",
+    "baseUrl": "https://affifam.com/te64a95fb",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "61",
+    "baseUrl": "https://onlucklink.com/h54135871",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "62",
+    "baseUrl": "https://dvspn.fynkelto.com/",
+    "fullQueryStringTemplate": "?mid=266931_1596688&clickid={ACCOUNT_PREFIX}-ex-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "63",
+    "baseUrl": "https://top.aglobally.com/redirect.aspx",
+    "fullQueryStringTemplate": "?pid=55686&lpid=604&bid=1487&dynamic={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "64",
+    "baseUrl": "https://pis.trivobel.com/",
+    "fullQueryStringTemplate": "?mid=4293_1670454&clickid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "65",
+    "baseUrl": "https://betandplay.partners/j73e18dfd",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "66",
+    "baseUrl": "https://sol-mmtdzfbaco.com/cbbaff883",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "67",
+    "baseUrl": "https://crosstoter.com/api/v3/offer/367",
+    "fullQueryStringTemplate": "?affiliate_id=689&url_id=938&&aff_sub={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "68",
+    "baseUrl": "https://crosstoter.com/api/v3/offer/368",
+    "fullQueryStringTemplate": "?affiliate_id=689&url_id=940&&aff_sub=click_id&aff_sub2=web_id&aff_sub4=source&aff_sub6={ACCOUNT_PREFIX}-{clickiddyn1={externalid}&dyn2=17&dyn3=13\","
+  },
+  {
+    "id": "69",
+    "baseUrl": "https://rockwinlink.com/of3660659",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-ex-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "70",
+    "baseUrl": "https://crowngoldlink.com/o3174c178",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "71",
+    "baseUrl": "https://clickspinrise.com/a95acc259",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-ex-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "72",
+    "baseUrl": "https://boomiotraff.com/g965c0bf8",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "73",
+    "baseUrl": "https://Luckydreams.info/k8feecab0",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-ex-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "74",
+    "baseUrl": "https://letslucky.info/k6408ad5e",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-ex-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "75",
+    "baseUrl": "https://justcasino.info/kcb3ccbbd",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-ex-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "76",
+    "baseUrl": "https://luckyones.site/k2f3a7485",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-ex-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "77",
+    "baseUrl": "https://vegasnow.info/ka6c69d08",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-ex-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "78",
+    "baseUrl": "https://goldencrownlink.com/u95850631",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "79",
+    "baseUrl": "https://goldexcasino.media/n1e6529175",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "80",
+    "baseUrl": "https://record.spinaffs.com/_rnRoQppquuFcrczEcq72SmNd7ZgqdRLk/4/",
+    "fullQueryStringTemplate": "?payload={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "81",
+    "baseUrl": "https://ocsp.servclick1move.com/",
+    "fullQueryStringTemplate": "?mid=272437_1594216&clickid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "82",
+    "baseUrl": "https://gzo-ircp01.com/c266fc9e1",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "83",
+    "baseUrl": "https://betandplay.partners/jb5838468",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-ex-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "84",
+    "baseUrl": "https://luckycircus.partners/j86306b7a",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-ex-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "85",
+    "baseUrl": "https://record.primewebaffiliates.com/_1ff8RT1mmY9w9PUHBV5BDWNd7ZgqdRLk/1/",
+    "fullQueryStringTemplate": "?payload={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "86",
+    "baseUrl": "https://clb.kngpulse.com/",
+    "fullQueryStringTemplate": "?mid=258633_1662696&clickid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "87",
+    "baseUrl": "https://bftraff.com/ab8e5130d",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "88",
+    "baseUrl": "https://track.betmenaffiliates.com/visit/",
+    "fullQueryStringTemplate": "?bta=36051&nci=5849&afp10=Google_ppc&afp={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "89",
+    "baseUrl": "https://record.quickstackpartners.com/_17Qv7PruWtXUOsjNOfgKeWNd7ZgqdRLk/2/",
+    "fullQueryStringTemplate": "?payload={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "90",
+    "baseUrl": "https://rbct.zurkano.com/",
+    "fullQueryStringTemplate": "?mid=36197_1669206&clickid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13"
+  },
+  {
+    "id": "91",
+    "baseUrl": "https://bal.allsetro.com/",
+    "fullQueryStringTemplate": "?mid=284270_1670733&clickid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=1"
   }
 ]
