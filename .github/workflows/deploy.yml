@@ -74,6 +74,5 @@ jobs:
           wrangler deploy --minify \
             --name "${{ matrix.account }}-brand-redirect" \
             --compatibility-date "2024-06-23" \
-            --account-id "$CLOUDFLARE_ACCOUNT_ID" 
           echo "--- Worker deployed for ${{ matrix.account }} ---"
           echo "---------------------------------------------------"
