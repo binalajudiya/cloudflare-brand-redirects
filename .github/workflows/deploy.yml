@@ -57,19 +57,12 @@ jobs:
           echo "  AU Prefix for Worker: $AU_PREFIX"
 
           # --- Step A: Update KV Data for the current account ---
-          echo "    Clearing existing KV data in namespace: $KV_NAMESPACE_ID..."
-          # Delete all existing keys
-          wrangler kv:key list --namespace-id "$KV_NAMESPACE_ID" --preview=false | jq -r '.[].name' | while read -r key; do
-            echo "      Deleting KV key: $key"
-            wrangler kv:key delete "$key" --namespace-id "$KV_NAMESPACE_ID"
-          done
-          echo "    KV data cleared."
-
           jq -c '.[]' brands_data.json | while read -r line; do
             ID=$(echo "$line" | jq -r '.id')
             VALUE=$(echo "$line" | jq -c '{baseUrl: .baseUrl, fullQueryStringTemplate: .fullQueryStringTemplate}')
             
             echo "    Uploading KV key: $ID"
+            # Use --remote to ensure it connects to Cloudflare's servers
             wrangler kv key put "$ID" "$VALUE" --namespace-id "$KV_NAMESPACE_ID" --remote
           done
           echo "    KV data update complete for ${{ matrix.account }}."
