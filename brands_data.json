@@ -15,7 +15,7 @@
     "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-ex-{clickid}&dyn1={externalid}&dyn2=18&dyn3=14"
   },
   {
-    "id": "14",
+    "id": "12",
     "baseUrl": "https://staylinks.net/ab652b33b",
     "fullQueryStringTemplate": "?pub_id={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=18&dyn3=14"
   },
