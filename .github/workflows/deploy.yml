@@ -44,7 +44,7 @@ jobs:
 
       - name: Perform Deployment for ${{ matrix.account }}
         env:
-          KV_NAMESPACE_ID: ${{ steps.get_namespace_id.outputs.id }}
+          KV_NAMESPACE_ID: ${{ secrets[format('KV_NAMESPACE_ID_{0}', matrix.account)] }}
           WRANGLER_KV_NAMESPACE_BINDINGS: '[{"binding":"BRAND_LINKS","id":"${{ steps.get_namespace_id.outputs.id }}"}]'
         # The 'run' script for each matrix iteration
         run: |
