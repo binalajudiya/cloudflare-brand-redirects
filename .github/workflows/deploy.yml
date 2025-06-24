@@ -17,9 +17,6 @@ jobs:
     strategy:
       matrix:
         account_config:
-          - account: "AU210"
-            dyn2: "18"
-            dyn3: "14"
           - account: "AU218"
             dyn2: "20"
             dyn3: "15"
