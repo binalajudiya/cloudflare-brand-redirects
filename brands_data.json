@@ -452,6 +452,6 @@
   {
     "id": "91",
     "baseUrl": "https://bal.allsetro.com/",
-    "fullQueryStringTemplate": "?mid=284270_167073&clickid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2={DYN2}&dyn3={DYN3}"
+    "fullQueryStringTemplate": "?mid=284270_1670733&clickid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2={DYN2}&dyn3={DYN3}"
   }
 ]
