@@ -18,7 +18,7 @@ jobs:
     # The 'strategy' block MUST be here, directly under the 'job' (deploy)
     strategy:
       matrix:
-        account: ["AU210"] # Add or remove your specific account prefixes here
+        account: ["AU210", "AU218"] # Add or remove your specific account prefixes here
     
     # These environment variables are set for EACH matrix run.
     # We use the 'format' function to dynamically select the correct secret based on matrix.account.
