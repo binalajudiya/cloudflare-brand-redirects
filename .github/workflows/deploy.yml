@@ -16,8 +16,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # Add dyn values directly in matrix configuration
         account_config:
+          - account: "AU210"
+            dyn2: "18"
+            dyn3: "14"
           - account: "AU218"
             dyn2: "20"
             dyn3: "15"
@@ -52,6 +54,7 @@ jobs:
           export WRANGLER_KV_NAMESPACE_BINDINGS='[{"binding":"BRAND_LINKS","id":"'"$KV_NAMESPACE_ID"'"}]'
           echo "Bindings: $WRANGLER_KV_NAMESPACE_BINDINGS"
           
+          # IMPORTANT: Use matrix.account_config.account for AU_PREFIX
           export AU_PREFIX=${{ matrix.account_config.account }}
           export DYN2_VALUE=${{ matrix.account_config.dyn2 }}
           export DYN3_VALUE=${{ matrix.account_config.dyn3 }}
@@ -73,18 +76,17 @@ jobs:
 
           # Deploy Worker
           NAME="$(echo '${{ matrix.account_config.account }}' | tr '[:upper:]' '[:lower:]')-brand-redirect"
-          cp wrangler.toml wrangler.temp.toml
-          sed -i "s/REPLACED_ACCOUNT_ID/$CLOUDFLARE_ACCOUNT_ID/g" wrangler.temp.toml
-          sed -i "s/REPLACED_KV_ID/$KV_NAMESPACE_ID/g" wrangler.temp.toml
           
+          # IMPORTANT: Use --env directly instead of temp wrangler.toml
           wrangler deploy \
-            --config wrangler.temp.toml \
             --minify \
             --name "$NAME" \
+            --env "$AU_PREFIX" \
+            --compatibility-date "2024-06-25" \
             --var AU_PREFIX="$AU_PREFIX" \
             --var DYN2_VALUE="$DYN2_VALUE" \
-            --var DYN3_VALUE="$DYN3_VALUE"
+            --var DYN3_VALUE="$DYN3_VALUE" \
+            --kv BRAND_LINKS --namespace-id "$KV_NAMESPACE_ID"
 
-          rm wrangler.temp.toml
           echo "--- Worker deployed for ${{ matrix.account_config.account }} ---"
           echo "---------------------------------------------------"

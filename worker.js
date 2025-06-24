@@ -16,8 +16,6 @@ export default {
       console.log(`[Worker Debug] Extracted link ID: ${linkId}`);
 
       const brandDataString = await env.BRAND_LINKS.get(linkId);
-      console.log(`[Worker Debug] Raw KV response for ID ${linkId}: ${brandDataString?.substring(0, 100) || 'null'}`);
-
       if (!brandDataString) {
         console.error(`[Worker Error] Link ID ${linkId} not found`);
         return new Response("Invalid link ID", { status: 404 });
@@ -40,7 +38,10 @@ export default {
       console.log(`[Worker Debug] Base URL: ${finalDestinationUrl}`);
       console.log(`[Worker Debug] Query Template: ${queryStringTemplate}`);
 
-      // Replace placeholders in order
+      // DEBUG: Log environment variables
+      console.log(`[Worker Debug] Env: AU_PREFIX=${env.AU_PREFIX}, DYN2=${env.DYN2_VALUE}, DYN3=${env.DYN3_VALUE}`);
+
+      // Perform replacements
       const replacements = {
         "{ACCOUNT_PREFIX}": env.AU_PREFIX || "",
         "{DYN2_VALUE}": env.DYN2_VALUE || "",
@@ -49,8 +50,12 @@ export default {
         "{externalid}": encodeURIComponent(gclidValue)
       };
 
+      // Replace all placeholders
       for (const [key, value] of Object.entries(replacements)) {
-        queryStringTemplate = queryStringTemplate.replace(new RegExp(key, "g"), value);
+        queryStringTemplate = queryStringTemplate.replace(
+          new RegExp(key.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), "g"), 
+          value
+        );
       }
 
       console.log(`[Worker Debug] Processed Query: ${queryStringTemplate}`);
