@@ -60,9 +60,8 @@ jobs:
 
           # --- Step B: Deploy Worker Code for the current account ---
           # Generate lowercase name in shell
-          - name: Perform Deployment for ${{ matrix.account }}
-          env: # <--- NEW env block for this specific step
-            WRANGLER_KV_NAMESPACE_BINDINGS: '[{"binding":"BRAND_LINKS","id":"${{ env.KV_NAMESPACE_ID }}"}]' # <--- Set KV binding here
+          env: 
+            WRANGLER_KV_NAMESPACE_BINDINGS: '[{"binding":"BRAND_LINKS","id":"${{ env.KV_NAMESPACE_ID }}"}]'
             # All other variables (CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, KV_NAMESPACE_ID, AU_PREFIX)
             # are already correctly set at the JOB-level env or are derived in the script.
           run: |
