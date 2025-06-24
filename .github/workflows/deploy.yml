@@ -76,6 +76,7 @@ jobs:
           wrangler deploy --minify \
             --name "$NAME" \
             --compatibility-date "2024-06-23"
+            --kv "BRAND_LINKS:$KV_NAMESPACE_ID"
           
           # These echo statements MUST be on separate lines and not continue the previous command
           echo "--- Worker deployed for ${{ matrix.account }} ---"
