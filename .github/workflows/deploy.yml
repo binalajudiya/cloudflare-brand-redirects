@@ -16,9 +16,6 @@ jobs:
     strategy:
       matrix:
         include:
-          - account: "AU210"
-            dyn2: "17"
-            dyn3: "13"
           - account: "AU218"
             dyn2: "99"
             dyn3: "77"
