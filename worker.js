@@ -16,7 +16,7 @@ export default {
       console.log(`[Worker Debug] Extracted link ID: ${linkId}`); // DEBUG
 
       // Fetch brand data from KV
-      const brandDataString = await env.BRAND_DATA.get(linkId);
+      const brandDataString = await env.BRAND_LINKS.get(linkId);
       console.log(`[Worker Debug] Raw KV response for ID ${linkId}: ${brandDataString ? brandDataString.substring(0, 100) + '...' : 'null/undefined'}`); // DEBUG (log first 100 chars)
 
       // Handle if link ID not found in KV
