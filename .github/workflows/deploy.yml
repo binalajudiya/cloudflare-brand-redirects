@@ -58,21 +58,27 @@ jobs:
           echo "  Attempting to load secret: CLOUDFLARE_API_TOKEN_${{ matrix.account }}"
           echo "  Resolved CLOUDFLARE_API_TOKEN (masked): $CLOUDFLARE_API_TOKEN"
 
-          
+          # --- Step A: Update KV Data for the current account ---
+          jq -c '.[]' brands_data.json | while read -r line; do
+            ID=$(echo "$line" | jq -r '.id')
+            VALUE=$(echo "$line" | jq -c '{baseUrl: .baseUrl, fullQueryStringTemplate: .fullQueryStringTemplate}')
+            
+            echo "    Uploading KV key: $ID"
+            # Use --remote to ensure it connects to Cloudflare's servers
+            wrangler kv key put "$ID" "$VALUE" --namespace-id "$KV_NAMESPACE_ID" --remote
+          done
+          echo "    KV data update complete for ${{ matrix.account }}."
 
           # --- Step B: Deploy Worker Code for the current account ---
           # Generate lowercase name in shell
           NAME="$(echo '${{ matrix.account }}' | tr '[:upper:]' '[:lower:]')-brand-redirect"
-          export AU_PREFIX=${{ matrix.account }}
-
-          echo "[[kv_namespaces]]" >> wrangler.toml
-          echo "binding = \"BRAND_DATA\"" >> wrangler.toml
-          echo "id = \"$KV_NAMESPACE_ID\"" >> wrangler.toml
+          export WRANGLER_KV_NAMESPACE_BINDINGS='[{"binding":"BRAND_LINKS","id":"'$KV_NAMESPACE_ID'"}]'
 
           wrangler deploy --minify \
             --name "$NAME" \
-            --compatibility-date "2024-06-25" \
-            --var AU_PREFIX="$AU_PREFIX"
+            --compatibility-date "2024-06-23" \
+            --kv "BRAND_LINKS:$KV_NAMESPACE_ID"
           
+          # These echo statements MUST be on separate lines and not continue the previous command
           echo "--- Worker deployed for ${{ matrix.account }} ---"
           echo "---------------------------------------------------"
