@@ -63,7 +63,7 @@ export default {
       return Response.redirect(finalDestinationUrl, 302);
 
     } catch (error) {
-      console.error("Worker Catch Block Error:", error.stack || error.message);
+      console.error("Worker Catch Block Errors:", error.stack || error.message);
       return new Response("Server Error", { status: 500 });
     }
   }
