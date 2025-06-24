@@ -73,7 +73,8 @@ jobs:
           # Generate lowercase name in shell
           NAME="$(echo '${{ matrix.account }}' | tr '[:upper:]' '[:lower:]')-brand-redirect"
           export WRANGLER_KV_NAMESPACE_BINDINGS='[{"binding":"BRAND_LINKS","id":"'$KV_NAMESPACE_ID'"}]'
-
+          echo "  WRANGLER_KV_NAMESPACE_BINDINGS set to: $WRANGLER_KV_NAMESPACE_BINDINGS" 
+          
           wrangler deploy --minify \
             --name "$NAME" \
             --compatibility-date "2024-06-23" \

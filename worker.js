@@ -1,5 +1,6 @@
 export default {
   async fetch(request, env, ctx) {
+    console.log("[Worker Debug] Worker invoked!"); // <--- ADD THIS LINE HERE
     try {
       const url = new URL(request.url);
       const pathSegments = url.pathname.split("/").filter(Boolean);
