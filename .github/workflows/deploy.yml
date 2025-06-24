@@ -58,26 +58,30 @@ jobs:
           echo "⏫ Uploading KV pairs..."
 
           jq -c '.[]' brands_data.json | while read -r line; do
-            ID=$(echo "$line" | jq -r '.id')
+          ID=$(echo "$line" | jq -r '.id')
 
-            VALUE=$(echo "$line" | jq -c \
-              --arg prefix "$AU_PREFIX" \
-              --arg dyn2 "$DYN2" \
-              --arg dyn3 "$DYN3" '
-              {
-                baseUrl: .baseUrl,
-                fullQueryStringTemplate: (
-                  .fullQueryStringTemplate
-                  | gsub("\\{ACCOUNT_PREFIX\\}"; $prefix)
-                  | gsub("\\{DYN2\\}"; $dyn2)
-                  | gsub("\\{DYN3\\}"; $dyn3)
-                )
-              }
-            ')
+          VALUE=$(echo "$line" | jq -c \
+            --arg prefix "$AU_PREFIX" \
+            --arg dyn2 "$DYN2" \
+            --arg dyn3 "$DYN3" '
+            {
+              baseUrl: .baseUrl,
+              fullQueryStringTemplate: (
+                .fullQueryStringTemplate
+                | gsub("\\{ACCOUNT_PREFIX\\}"; $prefix)
+                | gsub("\\{DYN2\\}"; $dyn2)
+                | gsub("\\{DYN3\\}"; $dyn3)
+              )
+            }
+          ')
 
-            echo "  ↳ Uploading KV key: $ID"
-            wrangler kv:key put "$ID" "$VALUE" --namespace-id "$KV_NAMESPACE_ID" --remote
+          echo "  ↳ Uploading KV key: $ID"
+          curl -s -X PUT "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/storage/kv/namespaces/$KV_NAMESPACE_ID/values/$ID" \
+            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            -H "Content-Type: application/json" \
+            --data "$VALUE"
           done
+
 
           echo "✅ KV data upload complete for $AU_PREFIX."
 
