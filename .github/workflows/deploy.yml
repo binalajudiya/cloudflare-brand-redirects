@@ -5,82 +5,93 @@ name: Deploy Cloudflare Workers and KV Data
 on:
   push:
     branches:
-      - main
+      - main # Trigger on pushes to the 'main' branch
     paths:
-      - 'worker.js'
-      - 'wrangler.toml'
-      - 'brands_data.json'
+      - 'worker.js'        # Trigger if worker code changes
+      - 'wrangler.toml'    # Trigger if wrangler config changes
+      - 'brands_data.json' # Trigger if brand data changes
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # Use a standard Ubuntu runner
+    
+    # The 'strategy' block MUST be here, directly under the 'job' (deploy)
     strategy:
       matrix:
-        account_config:
-          - account: "AU218"
-            dyn2: "20"
-            dyn3: "15"
-
+        account: [ "AU218"] # Add or remove your specific account prefixes here
+    
+    # These environment variables are set for EACH matrix run.
+    # We use the 'format' function to dynamically select the correct secret based on matrix.account.
     env:
-      CLOUDFLARE_API_TOKEN: ${{ secrets[format('CLOUDFLARE_API_TOKEN_{0}', matrix.account_config.account) ] }}
-      CLOUDFLARE_ACCOUNT_ID: ${{ secrets[format('CLOUDFLARE_ACCOUNT_ID_{0}', matrix.account_config.account) ] }}
-      KV_NAMESPACE_ID: ${{ secrets[format('KV_NAMESPACE_ID_{0}', matrix.account_config.account) ] }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets[format('CLOUDFLARE_API_TOKEN_{0}', matrix.account)] }} 
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets[format('CLOUDFLARE_ACCOUNT_ID_{0}', matrix.account)] }}
+      KV_NAMESPACE_ID: ${{ secrets[format('KV_NAMESPACE_ID_{0}', matrix.account)] }}
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4 # Get your code from the GitHub repository
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v4 # Install Node.js
         with:
-          node-version: '20'
+          node-version: '20' # Recommend Node.js 20 or newer
 
       - name: Install Wrangler CLI
-        run: npm install -g wrangler
+        run: npm install -g wrangler # Install Cloudflare's CLI tool
 
-      - name: Install jq
-        run: sudo apt-get update && sudo apt-get install -y jq
+      - name: Install jq (for JSON parsing)
+        run: sudo apt-get update && sudo apt-get install -y jq # Install jq for processing JSON
 
-      - name: Perform Deployment for ${{ matrix.account_config.account }}
+      - name: Perform Deployment for ${{ matrix.account }}
         run: |
           if [ -z "$KV_NAMESPACE_ID" ]; then
-            echo "❌ KV_NAMESPACE_ID is not set for ${{ matrix.account_config.account }}"
+            echo "❌ KV_NAMESPACE_ID is not set for ${{ matrix.account }}"
             exit 1
           fi
           set -e
+          export WRANGLER_KV_NAMESPACE_BINDINGS='[{"binding":"BRAND_LINKS","id":"'"$KV_NAMESPACE_ID"'"}]'
+          echo "Bindings: $WRANGLER_KV_NAMESPACE_BINDINGS"
           
-          export AU_PREFIX=${{ matrix.account_config.account }}
-          export DYN2_VALUE=${{ matrix.account_config.dyn2 }}
-          export DYN3_VALUE=${{ matrix.account_config.dyn3 }}
+          export AU_PREFIX=${{ matrix.account }}
 
-          echo "--- Deploying to Cloudflare account: ${{ matrix.account_config.account }} ---"
+          echo "--- Deploying to Cloudflare account: ${{ matrix.account }} ---"
           echo "  Account ID: $CLOUDFLARE_ACCOUNT_ID"
           echo "  KV Namespace ID: $KV_NAMESPACE_ID"
-          echo "  AU Prefix: $AU_PREFIX"
-          echo "  DYN2 Value: $DYN2_VALUE"
-          echo "  DYN3 Value: $DYN3_VALUE"
+          echo "  AU Prefix for Worker: $AU_PREFIX"
+          echo "  Resolved CLOUDFLARE_API_TOKEN (masked): $CLOUDFLARE_API_TOKEN"
 
-          # Update KV Data
+          # --- Step A: Update KV Data for the current account ---
           jq -c '.[]' brands_data.json | while read -r line; do
             ID=$(echo "$line" | jq -r '.id')
             VALUE=$(echo "$line" | jq -c '{baseUrl: .baseUrl, fullQueryStringTemplate: .fullQueryStringTemplate}')
-            wrangler kv:key put "$ID" "$VALUE" --namespace-id "$KV_NAMESPACE_ID"
+            
+            echo "    Uploading KV key: $ID"
+            # Use --remote to ensure it connects to Cloudflare's servers
+            wrangler kv key put "$ID" "$VALUE" --namespace-id "$KV_NAMESPACE_ID" --remote
           done
-          echo "KV data updated for ${{ matrix.account_config.account }}."
+          echo "    KV data update complete for ${{ matrix.account }}."
 
-          # Deploy Worker
-          NAME="$(echo '${{ matrix.account_config.account }}' | tr '[:upper:]' '[:lower:]')-brand-redirect"
-          
-          wrangler deploy worker.js \
+          # --- Step B: Deploy Worker Code for the current account ---
+          # Generate lowercase name in shell
+          NAME="$(echo '${{ matrix.account }}' | tr '[:upper:]' '[:lower:]')-brand-redirect"
+
+          # Create a temporary wrangler config for this environment
+          cp wrangler.toml wrangler.temp.toml
+
+          # Replace placeholders in the temp config with actual values
+          sed -i "s/REPLACED_ACCOUNT_ID/$CLOUDFLARE_ACCOUNT_ID/g" wrangler.temp.toml
+          sed -i "s/REPLACED_KV_ID/$KV_NAMESPACE_ID/g" wrangler.temp.toml
+          sed -i "s/REPLACED_AU_PREFIX/$AU_PREFIX/g" wrangler.temp.toml
+
+          # Deploy using the temp config
+          wrangler deploy \
+            --config wrangler.temp.toml \
             --minify \
-            --name "$NAME" \
-            --compatibility-date "2024-06-25" \
-            --account-id "$CLOUDFLARE_ACCOUNT_ID" \
-            --kv BRAND_LINKS \
-            --binding BRAND_LINKS "$KV_NAMESPACE_ID" \
-            --var AU_PREFIX="$AU_PREFIX" \
-            --var DYN2_VALUE="$DYN2_VALUE" \
-            --var DYN3_VALUE="$DYN3_VALUE"
+            --name "$NAME"
 
-          echo "--- Worker deployed for ${{ matrix.account_config.account }} ---"
+          # Clean up temp config file
+          rm wrangler.temp.toml
+          
+          # These echo statements MUST be on separate lines and not continue the previous command
+          echo "--- Worker deployed for ${{ matrix.account }} ---"
           echo "---------------------------------------------------"
