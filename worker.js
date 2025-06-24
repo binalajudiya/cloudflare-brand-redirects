@@ -34,39 +34,23 @@ export default {
       console.log(`[Worker Debug] GCLID value: ${gclidValue}`);
 
       let finalDestinationUrl = brandData.baseUrl;
-      let queryStringTemplate = brandData.fullQueryStringTemplate || "";
+      let queryString = brandData.fullQueryStringTemplate || "";
       console.log(`[Worker Debug] Base URL: ${finalDestinationUrl}`);
-      console.log(`[Worker Debug] Query Template: ${queryStringTemplate}`);
+      console.log(`[Worker Debug] Query Template: ${queryString}`);
 
       // DEBUG: Log environment variables
       console.log(`[Worker Debug] Env: AU_PREFIX=${env.AU_PREFIX}, DYN2=${env.DYN2_VALUE}, DYN3=${env.DYN3_VALUE}`);
 
-      // Perform replacements
-      const replacements = {
-        "{ACCOUNT_PREFIX}": env.AU_PREFIX || "",
-        "{DYN2_VALUE}": env.DYN2_VALUE || "",
-        "{DYN3_VALUE}": env.DYN3_VALUE || "",
-        "{clickid}": encodeURIComponent(gclidValue),
-        "{externalid}": encodeURIComponent(gclidValue)
-      };
+      // Replace placeholders
+      queryString = queryString
+        .replace(/{ACCOUNT_PREFIX}/g, env.AU_PREFIX || "")
+        .replace(/{DYN2}/g, env.DYN2_VALUE || "")
+        .replace(/{DYN3}/g, env.DYN3_VALUE || "")
+        .replace(/{clickid}/g, encodeURIComponent(gclidValue))
+        .replace(/{externalid}/g, encodeURIComponent(gclidValue));
 
-      // Replace all placeholders
-      for (const [key, value] of Object.entries(replacements)) {
-        queryStringTemplate = queryStringTemplate.replace(
-          new RegExp(key.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), "g"), 
-          value
-        );
-      }
-
-      console.log(`[Worker Debug] Processed Query: ${queryStringTemplate}`);
-      finalDestinationUrl += queryStringTemplate;
+      console.log(`[Worker Debug] Processed Query: ${queryString}`);
+      finalDestinationUrl += queryString;
       console.log(`[Worker Debug] Final URL: ${finalDestinationUrl}`);
 
-      return Response.redirect(finalDestinationUrl, 302);
-
-    } catch (error) {
-      console.error("Worker Error:", error.stack || error.message);
-      return new Response("Server Error", { status: 500 });
-    }
-  }
-};
+      return
