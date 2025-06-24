@@ -69,7 +69,7 @@ jobs:
           
           wrangler deploy --minify \
             --name "$NAME" \
-            --compatibility-date "2024-06-23" \
+            --compatibility-date "2024-06-22" \
             --var AU_PREFIX="$AU_PREFIX" 
           
           echo "--- Worker deployed for ${{ matrix.account }} ---"
