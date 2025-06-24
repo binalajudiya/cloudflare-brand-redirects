@@ -70,7 +70,8 @@ jobs:
           wrangler deploy --minify \
             --name "$NAME" \
             --compatibility-date "2024-06-22" \
-            --var AU_PREFIX="$AU_PREFIX" 
+            --var AU_PREFIX="$AU_PREFIX" \
+            --kv-namespaces BRAND_DATA="$KV_NAMESPACE_ID"
           
           echo "--- Worker deployed for ${{ matrix.account }} ---"
           echo "---------------------------------------------------"
