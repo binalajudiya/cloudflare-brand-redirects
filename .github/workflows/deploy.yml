@@ -44,10 +44,12 @@ jobs:
 
       - name: Perform Deployment for ${{ matrix.account }}
         env:
-          WRANGLER_KV_NAMESPACE_BINDINGS: '[{"binding":"BRAND_LINKS","id":"${{ env.KV_NAMESPACE_ID }}"}]'
+          KV_NAMESPACE_ID: ${{ steps.get_namespace_id.outputs.id }}
+          WRANGLER_KV_NAMESPACE_BINDINGS: '[{"binding":"BRAND_LINKS","id":"${{ steps.get_namespace_id.outputs.id }}"}]'
         # The 'run' script for each matrix iteration
         run: |
           set -e
+          echo "Bindings: $WRANGLER_KV_NAMESPACE_BINDINGS"
           # The CLOUDFLARE_ACCOUNT_ID and KV_NAMESPACE_ID are now directly available
           # from the 'env' section above, thanks to the matrix iteration.
           
