@@ -43,24 +43,21 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y jq # Install jq for processing JSON
 
       - name: Perform Deployment for ${{ matrix.account }}
-        env:
-          KV_NAMESPACE_ID: ${{ secrets[format('KV_NAMESPACE_ID_{0}', matrix.account)] }}
-          WRANGLER_KV_NAMESPACE_BINDINGS: '[{"binding":"BRAND_LINKS","id":"${{ steps.get_namespace_id.outputs.id }}"}]'
-        # The 'run' script for each matrix iteration
         run: |
+          if [ -z "$KV_NAMESPACE_ID" ]; then
+            echo "❌ KV_NAMESPACE_ID is not set for ${{ matrix.account }}"
+            exit 1
+          fi
           set -e
+          export WRANGLER_KV_NAMESPACE_BINDINGS='[{"binding":"BRAND_LINKS","id":"'"$KV_NAMESPACE_ID"'"}]'
           echo "Bindings: $WRANGLER_KV_NAMESPACE_BINDINGS"
-          # The CLOUDFLARE_ACCOUNT_ID and KV_NAMESPACE_ID are now directly available
-          # from the 'env' section above, thanks to the matrix iteration.
           
-          # Set the specific AU_PREFIX for this deployment
-          export AU_PREFIX=${{ matrix.account }} 
+          export AU_PREFIX=${{ matrix.account }}
 
           echo "--- Deploying to Cloudflare account: ${{ matrix.account }} ---"
-          echo "  Account ID: $CLOUDFLARE_ACCOUNT_ID" # Now directly accessible
-          echo "  KV Namespace ID: $KV_NAMESPACE_ID"   # Now directly accessible
+          echo "  Account ID: $CLOUDFLARE_ACCOUNT_ID"
+          echo "  KV Namespace ID: $KV_NAMESPACE_ID"
           echo "  AU Prefix for Worker: $AU_PREFIX"
-          echo "  Attempting to load secret: CLOUDFLARE_API_TOKEN_${{ matrix.account }}"
           echo "  Resolved CLOUDFLARE_API_TOKEN (masked): $CLOUDFLARE_API_TOKEN"
 
           # --- Step B: Deploy Worker Code for the current account ---
