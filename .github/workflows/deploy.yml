@@ -58,29 +58,19 @@ jobs:
           echo "  Attempting to load secret: CLOUDFLARE_API_TOKEN_${{ matrix.account }}"
           echo "  Resolved CLOUDFLARE_API_TOKEN (masked): $CLOUDFLARE_API_TOKEN"
 
+          
+
           # --- Step B: Deploy Worker Code for the current account ---
           # Generate lowercase name in shell
-          env: 
-            WRANGLER_KV_NAMESPACE_BINDINGS: '[{"binding":"BRAND_LINKS","id":"${{ env.KV_NAMESPACE_ID }}"}]'
-            # All other variables (CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, KV_NAMESPACE_ID, AU_PREFIX)
-            # are already correctly set at the JOB-level env or are derived in the script.
-          run: |
-            set -e # Exit immediately if any command fails
+          NAME="$(echo '${{ matrix.account }}' | tr '[:upper:]' '[:lower:]')-brand-redirect"
 
-            # Generate lowercase name in shell
-            NAME="$(echo '${{ matrix.account }}' | tr '[:upper:]' '[:lower:]')-brand-redirect"
-
-            # AU_PREFIX is still needed in the script for the echo, so let's make sure it's available
-            # It's passed to wrangler deploy via --var.
-            export AU_PREFIX=${{ matrix.account }} # Re-export for shell script context, if needed for echoes
-
-            # You can remove the debug echo for WRANGLER_KV_NAMESPACE_BINDINGS now,
-            # as it's directly set in the step's env.
-            
-            wrangler deploy --minify \
-              --name "$NAME" \
-              --compatibility-date "2024-06-23" \
-              --var AU_PREFIX="$AU_PREFIX" # This correctly passes AU_PREFIX into the Worker's runtime
-            
-            echo "--- Worker deployed for ${{ matrix.account }} ---"
-            echo "---------------------------------------------------"
+          # Set the WRANGLER_KV_NAMESPACE_BINDINGS environment variable dynamically
+          export WRANGLER_KV_NAMESPACE_BINDINGS='[{"binding":"BRAND_LINKS","id":"'$KV_NAMESPACE_ID'"}]'
+          
+          wrangler deploy --minify \
+            --name "$NAME" \
+            --compatibility-date "2024-06-23" \
+            --var AU_PREFIX="$AU_PREFIX" 
+          
+          echo "--- Worker deployed for ${{ matrix.account }} ---"
+          echo "---------------------------------------------------"
