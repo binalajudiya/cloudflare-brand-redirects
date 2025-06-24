@@ -1,3 +1,5 @@
 name = "my-brand-redirect-worker"
 main = "worker.js" # <<< Change this line from "src/index.js"
 compatibility_date = "2024-06-23" # Keep your chosen date or update to a recent one
+[observability.logs]
+enabled = true
