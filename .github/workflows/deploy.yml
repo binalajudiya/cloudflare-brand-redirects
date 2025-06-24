@@ -64,10 +64,22 @@ jobs:
           # Generate lowercase name in shell
           NAME="$(echo '${{ matrix.account }}' | tr '[:upper:]' '[:lower:]')-brand-redirect"
 
-          wrangler deploy --minify \
-            --name "$NAME" \
-            --compatibility-date "2024-06-23" \
-            --var AU_PREFIX="$AU_PREFIX"
+          # Create a temporary wrangler config for this environment
+          cp wrangler.toml wrangler.temp.toml
+
+          # Replace placeholders in the temp config with actual values
+          sed -i "s/REPLACED_ACCOUNT_ID/$CLOUDFLARE_ACCOUNT_ID/g" wrangler.temp.toml
+          sed -i "s/REPLACED_KV_ID/$KV_NAMESPACE_ID/g" wrangler.temp.toml
+          sed -i "s/REPLACED_AU_PREFIX/$AU_PREFIX/g" wrangler.temp.toml
+
+          # Deploy using the temp config
+          wrangler deploy \
+            --config wrangler.temp.toml \
+            --minify \
+            --name "$NAME"
+
+          # Clean up temp config file
+          rm wrangler.temp.toml
           
           # These echo statements MUST be on separate lines and not continue the previous command
           echo "--- Worker deployed for ${{ matrix.account }} ---"

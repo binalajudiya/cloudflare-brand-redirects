@@ -1,5 +1,17 @@
 name = "my-brand-redirect-worker"
-main = "worker.js" # <<< Change this line from "src/index.js"
-compatibility_date = "2024-06-23" # Keep your chosen date or update to a recent one
+main = "worker.js"
+compatibility_date = "2024-06-23"
+
 [observability.logs]
 enabled = true
+
+# These will be replaced dynamically in your GitHub Action
+account_id = "REPLACED_ACCOUNT_ID"
+workers_dev = true
+
+[vars]
+AU_PREFIX = "REPLACED_AU_PREFIX"
+
+[[kv_namespaces]]
+binding = "BRAND_LINKS"
+id = "REPLACED_KV_ID"
