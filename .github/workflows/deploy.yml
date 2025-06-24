@@ -18,7 +18,10 @@ jobs:
     # The 'strategy' block MUST be here, directly under the 'job' (deploy)
     strategy:
       matrix:
-        account: [ "AU218"] # Add or remove your specific account prefixes here
+        include: 
+          - account: "AU218"
+            dyn2_val: "20" # Example value for AU218
+            dyn3_val: "15" # Example value for AU218
     
     # These environment variables are set for EACH matrix run.
     # We use the 'format' function to dynamically select the correct secret based on matrix.account.
@@ -53,11 +56,16 @@ jobs:
           echo "Bindings: $WRANGLER_KV_NAMESPACE_BINDINGS"
           
           export AU_PREFIX=${{ matrix.account }}
+          # Dynamic DYN2 and DYN3 values are now from the matrix include block
+          export DYN2_VALUE=${{ matrix.dyn2_val }} # <-- Access dyn2_val from matrix
+          export DYN3_VALUE=${{ matrix.dyn3_val }} # <-- Access dyn3_val from matrix
 
           echo "--- Deploying to Cloudflare account: ${{ matrix.account }} ---"
           echo "  Account ID: $CLOUDFLARE_ACCOUNT_ID"
           echo "  KV Namespace ID: $KV_NAMESPACE_ID"
           echo "  AU Prefix for Worker: $AU_PREFIX"
+          echo "  DYN2 Value for Worker: $DYN2_VALUE"
+          echo "  DYN3 Value for Worker: $DYN3_VALUE"
           echo "  Resolved CLOUDFLARE_API_TOKEN (masked): $CLOUDFLARE_API_TOKEN"
 
           # --- Step A: Update KV Data for the current account ---
@@ -82,6 +90,8 @@ jobs:
           sed -i "s/REPLACED_ACCOUNT_ID/$CLOUDFLARE_ACCOUNT_ID/g" wrangler.temp.toml
           sed -i "s/REPLACED_KV_ID/$KV_NAMESPACE_ID/g" wrangler.temp.toml
           sed -i "s/REPLACED_AU_PREFIX/$AU_PREFIX/g" wrangler.temp.toml
+          sed -i "s|REPLACED_DYN2|$DYN2_VALUE|g" wrangler.temp.toml # NEW: Replace DYN2
+          sed -i "s|REPLACED_DYN3|$DYN3_VALUE|g" wrangler.temp.toml # NEW: Replace DYN3
 
           # Deploy using the temp config
           wrangler deploy \

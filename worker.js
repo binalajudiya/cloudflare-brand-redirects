@@ -49,6 +49,22 @@ export default {
       } else {
         console.log("[Worker Debug] AU_PREFIX is NOT present."); // DEBUG
       }
+
+      // NEW: Replace {DYN2}
+      if (env.DYN2) { // Access DYN2 value from environment
+        console.log(`[Worker Debug] DYN2 is present: ${env.DYN2}. Replacing placeholder.`);
+        queryStringTemplate = queryStringTemplate.replace(/{DYN2}/g, env.DYN2);
+      } else {
+        console.log("[Worker Debug] DYN2 is NOT present.");
+      }
+
+      // NEW: Replace {DYN3}
+      if (env.DYN3) { // Access DYN3 value from environment
+        console.log(`[Worker Debug] DYN3 is present: ${env.DYN3}. Replacing placeholder.`);
+        queryStringTemplate = queryStringTemplate.replace(/{DYN3}/g, env.DYN3);
+      } else {
+        console.log("[Worker Debug] DYN3 is NOT present.");
+      }
       
       // Replace {clickid} and {externalid} placeholders
       queryStringTemplate = queryStringTemplate

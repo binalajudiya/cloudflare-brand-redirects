@@ -11,6 +11,8 @@ workers_dev = true
 
 [vars]
 AU_PREFIX = "REPLACED_AU_PREFIX"
+DYN2 = "REPLACED_DYN2"           
+DYN3 = "REPLACED_DYN3" 
 
 [[kv_namespaces]]
 binding = "BRAND_LINKS"
