@@ -43,8 +43,11 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y jq # Install jq for processing JSON
 
       - name: Perform Deployment for ${{ matrix.account }}
+        env:
+          WRANGLER_KV_NAMESPACE_BINDINGS: '[{"binding":"BRAND_LINKS","id":"${{ env.KV_NAMESPACE_ID }}"}]'
         # The 'run' script for each matrix iteration
         run: |
+          set -e
           # The CLOUDFLARE_ACCOUNT_ID and KV_NAMESPACE_ID are now directly available
           # from the 'env' section above, thanks to the matrix iteration.
           
@@ -61,12 +64,11 @@ jobs:
           # --- Step B: Deploy Worker Code for the current account ---
           # Generate lowercase name in shell
           NAME="$(echo '${{ matrix.account }}' | tr '[:upper:]' '[:lower:]')-brand-redirect"
-          export WRANGLER_KV_NAMESPACE_BINDINGS='[{"binding":"BRAND_LINKS","id":"'$KV_NAMESPACE_ID'"}]'
 
           wrangler deploy --minify \
             --name "$NAME" \
             --compatibility-date "2024-06-23" \
-            --kv "BRAND_LINKS:$KV_NAMESPACE_ID"
+            --var AU_PREFIX="$AU_PREFIX"
           
           # These echo statements MUST be on separate lines and not continue the previous command
           echo "--- Worker deployed for ${{ matrix.account }} ---"
