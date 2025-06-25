@@ -38,8 +38,11 @@ export default {
       if(url.searchParams.has("gclid") ) {
         console.log("[Worker Debug] GCLID parameter found in the URL.", url.searchParams.get("gclid")); // DEBUG
       }
-      if(url.searchParams.has("gbraid") ) {
+      else if(url.searchParams.has("gbraid") ) {
         console.log("[Worker Debug] Gbraid parameter found in the URL.", url.searchParams.get("gbraid")); // DEBUG
+      }
+      else {
+        console.log("[Worker Debug] GCLID and Gbraid no parameter found."); // DEBUG
       }
       const gclidValue = url.searchParams.get("gclid") || url.searchParams.get("gbraid") || url.searchParams.get("wbraid") || "";
       console.log(`[Worker Debug] GCLID value: ${gclidValue}`); // DEBUG
