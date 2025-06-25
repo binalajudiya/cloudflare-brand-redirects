@@ -81,7 +81,7 @@ jobs:
 
           # --- Step B: Deploy Worker Code for the current account ---
           # Generate lowercase name in shell
-          NAME="$(echo '${{ matrix.account }}' | tr '[:upper:]' '[:lower:]')-brand-redirect"
+          NAME="$(echo '${{ matrix.account }}' | tr '[:upper:]' '[:lower:]')-redirect"
 
           # Create a temporary wrangler config for this environment
           cp wrangler.toml wrangler.temp.toml
