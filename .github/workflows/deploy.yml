@@ -22,6 +22,9 @@ jobs:
           - account: "AU218"
             dyn2_val: "33" # Example value for AU218 - Websites
             dyn3_val: "30" # Example value for AU218 - Campaigns
+          - account: "AU214"
+            dyn2_val: "21" # Example value for AU218 - Websites
+            dyn3_val: "17" # Example value for AU218 - Campaigns
     
     # These environment variables are set for EACH matrix run.
     # We use the 'format' function to dynamically select the correct secret based on matrix.account.
