@@ -34,6 +34,13 @@ export default {
         return new Response("Server Error: Invalid KV data format", { status: 500 });
       }
 
+      // Check if Gclid or Gbraisd or Wbraid is present in the URL
+      if(url.searchParams.has("gclid") ) {
+        console.log("[Worker Debug] GCLID parameter found in the URL.", url.searchParams.get("gclid")); // DEBUG
+      }
+      if(url.searchParams.has("gbraid") ) {
+        console.log("[Worker Debug] Gbraid parameter found in the URL.", url.searchParams.get("gbraid")); // DEBUG
+      }
       const gclidValue = url.searchParams.get("gclid") || url.searchParams.get("gbraid") || url.searchParams.get("wbraid") || "";
       console.log(`[Worker Debug] GCLID value: ${gclidValue}`); // DEBUG
 
