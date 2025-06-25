@@ -201,8 +201,8 @@
   },
   {
     "id": "41",
-    "baseUrl": "https://partnersredirect.com/m8181d8e0&subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2=17&dyn3=13",
-    "fullQueryStringTemplate": ""
+    "baseUrl": "https://partnersredirect.com/m8181d8e0",
+    "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2={DYN2}&dyn3={DYN3}"
   },
   {
     "id": "42",
@@ -337,7 +337,7 @@
   {
     "id": "68",
     "baseUrl": "https://crosstoter.com/api/v3/offer/368",
-    "fullQueryStringTemplate": "?affiliate_id=689&url_id=940&&aff_sub=click_id&aff_sub2=web_id&aff_sub4=source&aff_sub6={ACCOUNT_PREFIX}-{clickiddyn1={externalid}&dyn2={DYN2}&dyn3=13{DYN3}"
+    "fullQueryStringTemplate": "?affiliate_id=689&url_id=940&&aff_sub=click_id&aff_sub2=web_id&aff_sub4=source&aff_sub6={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2={DYN2}&dyn3={DYN3}"
   },
   {
     "id": "69",
@@ -453,5 +453,15 @@
     "id": "91",
     "baseUrl": "https://bal.allsetro.com/",
     "fullQueryStringTemplate": "?mid=284270_1670733&clickid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2={DYN2}&dyn3={DYN3}"
+  },
+  {
+    "id": "92",
+    "baseUrl": "https://rchrl.fynkelto.com/",
+    "fullQueryStringTemplate": "?mid=284942_1673222&clickid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2={DYN2}&dyn3={DYN3}"
+  },
+  {
+    "id": "93",
+    "baseUrl": "https://psdcur.zurkano.com/",
+    "fullQueryStringTemplate": "?mid=36197_1673755&clickid=={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2{DYN2}3&dyn3{DYN3}"
   }
 ]
