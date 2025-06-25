@@ -34,7 +34,7 @@ export default {
         return new Response("Server Error: Invalid KV data format", { status: 500 });
       }
 
-      const gclidValue = url.searchParams.get("gclid") || "";
+      const gclidValue = url.searchParams.get("gclid") || url.searchParams.get("gbraid") || url.searchParams.get("wbraid") || "";
       console.log(`[Worker Debug] GCLID value: ${gclidValue}`); // DEBUG
 
       let finalDestinationUrl = brandData.baseUrl;
