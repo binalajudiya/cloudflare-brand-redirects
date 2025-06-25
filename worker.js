@@ -13,7 +13,7 @@ export default {
       }
 
       const linkId = pathSegments[1];
-      console.log(`[Worker Debug] Extracted link ID: ${linkId}`); // DEBUG
+      console.log(`[Worker Debug] Extracted  link ID: ${linkId}`); // DEBUG
 
       // Fetch brand data from KV
       const brandDataString = await env.BRAND_LINKS.get(linkId);
