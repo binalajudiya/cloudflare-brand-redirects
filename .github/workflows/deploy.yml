@@ -19,7 +19,7 @@ jobs:
     strategy:
       matrix:
         include: 
-          - account: "AU210"
+          - account: "AU218"
             dyn2_val: "33" # Example value for AU218 - Websites
             dyn3_val: "30" # Example value for AU218 - Campaigns
     

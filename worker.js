@@ -76,7 +76,7 @@ export default {
         //console.log("[Worker Debug] DYN3 is NOT present.");
       }
       
-      // Replace {clickid} and {externalid} placeholders
+      // Replace {clickid} and {externalid} placeholders 
       queryStringTemplate = queryStringTemplate
         .replace(/{clickid}/g, encodeURIComponent(gclidValue))
         .replace(/{externalid}/g, encodeURIComponent(gclidValue));
