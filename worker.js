@@ -86,6 +86,30 @@ export default {
       finalDestinationUrl += queryStringTemplate;
       //console.log(`[Worker Debug] Final Redirection URL: ${finalDestinationUrl}`); // DEBUG
 
+
+      // --- NEW: D1 Database Logging ---
+      // Generate a unique ID for this event
+      // This function is defined below the export default block.
+      const uniqueId = generateUuid(); 
+      const timestamp = new Date().toISOString(); // Get current timestamp in ISO 8601 format
+
+      // Store the data asynchronously using ctx.waitUntil
+      ctx.waitUntil(
+        // env.DB is the binding name defined in wrangler.toml
+        env.DB.prepare(
+          "INSERT INTO click_log (id, timestamp, gclid, final_url) VALUES (?, ?, ?, ?)"
+        )
+        .bind(uniqueId, timestamp, gclidValue, finalDestinationUrl)
+        .run()
+        .then(result => {
+            console.log(`[D1 Debug] Logged event ${uniqueId} successfully:`, result);
+        })
+        .catch(error => {
+            console.error(`[D1 Error] Failed to log event ${uniqueId}:`, error);
+        })
+      );
+      // --- END D1 Database Logging ---
+
       // Redirect the user
       return Response.redirect(finalDestinationUrl, 302);
 
