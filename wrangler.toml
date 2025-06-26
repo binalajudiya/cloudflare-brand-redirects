@@ -9,8 +9,9 @@ enabled = true
 account_id = "REPLACED_ACCOUNT_ID"
 workers_dev = true
 
-[observability] # This is the section for observability settings
-logs = { enabled = true } # This is how you enable logs under observability
+# Corrected Observability Logs configuration
+[observability.logs] # <--- Use this explicit sub-table header
+enabled = true       # <--- Define 'enabled' directly under this sub-table
 
 [vars]
 AU_PREFIX = "REPLACED_AU_PREFIX"
