@@ -86,30 +86,26 @@ export default {
       finalDestinationUrl += queryStringTemplate;
       //console.log(`[Worker Debug] Final Redirection URL: ${finalDestinationUrl}`); // DEBUG
 
+      // Insert click log into D1 database
+        try {
+            const ip = request.headers.get("cf-connecting-ip") || ""; // Cloudflare-provided IP
 
-      // --- NEW: D1 Database Logging ---
-      // Generate a unique ID for this event
-      // This function is defined below the export default block.
-      const uniqueId = generateUuid(); 
-      const timestamp = new Date().toISOString(); // Get current timestamp in ISO 8601 format
-
-      // Store the data asynchronously using ctx.waitUntil
-      ctx.waitUntil(
-        // env.DB is the binding name defined in wrangler.toml
-        env.DB.prepare(
-          "INSERT INTO click_log (id, timestamp, gclid, final_url) VALUES (?, ?, ?, ?)"
-        )
-        .bind(uniqueId, timestamp, gclidValue, finalDestinationUrl)
-        .run()
-        .then(result => {
-            console.log(`[D1 Debug] Logged event ${uniqueId} successfully:`, result);
-        })
-        .catch(error => {
-            console.error(`[D1 Error] Failed to log event ${uniqueId}:`, error);
-        })
-      );
-      // --- END D1 Database Logging ---
-
+            const insertStmt = env.CLICKDB.prepare(
+            `INSERT INTO click_log (id, timestamp, gclid, final_url) VALUES (?, ?, ?, ?)`
+            );
+        
+            await insertStmt.bind(
+            crypto.randomUUID(),  
+            ip,                           // id
+            new Date().toISOString(),                        // timestamp
+            gclidValue,                                      // gclid
+            finalDestinationUrl                              // final_url
+            ).run();
+        } catch (dbError) {
+            console.error("D1 insert error:", dbError.message);
+        }
+        // --- END D1 Database Logging ---
+      
       // Redirect the user
       return Response.redirect(finalDestinationUrl, 302);
 
