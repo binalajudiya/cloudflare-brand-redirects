@@ -92,7 +92,7 @@ export default {
             const ip = request.headers.get("cf-connecting-ip") || ""; // Cloudflare-provided IP
 
             const insertStmt = env.CLICKDB.prepare(
-            `INSERT INTO click_log (id, ip, timestamp, gclid, final_url) VALUES (?, ?, ?, ?)`
+            `INSERT INTO click_log (id, ip_address, timestamp, gclid, final_url) VALUES (?, ?, ?, ?)`
             );
         
             await insertStmt.bind(
