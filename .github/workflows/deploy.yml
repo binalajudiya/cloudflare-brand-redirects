@@ -93,7 +93,7 @@ jobs:
           wrangler d1 execute CLICKDB \
           --remote \
           --config wrangler.temp.toml \
-          --command "CREATE TABLE IF NOT EXISTS click_log (id TEXT PRIMARY KEY, timestamp TEXT NOT NULL, gclid TEXT, final_url TEXT NOT NULL);"
+          --command "CREATE TABLE IF NOT EXISTS click_log (id TEXT PRIMARY KEY, ip_address TEXT, timestamp TEXT NOT NULL, gclid TEXT, final_url TEXT NOT NULL);"
 
           # Deploy using the temp config
           wrangler deploy \

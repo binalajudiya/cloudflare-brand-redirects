@@ -86,6 +86,7 @@ export default {
       finalDestinationUrl += queryStringTemplate;
       //console.log(`[Worker Debug] Final Redirection URL: ${finalDestinationUrl}`); // DEBUG
 
+      // --- NEW: D1 Database Logging ---
       // Insert click log into D1 database
         try {
             const ip = request.headers.get("cf-connecting-ip") || ""; // Cloudflare-provided IP
