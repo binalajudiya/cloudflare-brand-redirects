@@ -7,7 +7,7 @@ account_id = "REPLACED_ACCOUNT_ID"
 workers_dev = true
 
 # Corrected Observability Logs configuration
-[observability.logs] # <--- Use this explicit sub-table header
+[observability] # <--- Use this explicit sub-table header
 enabled = true       # <--- Define 'enabled' directly under this sub-table
 
 [vars]

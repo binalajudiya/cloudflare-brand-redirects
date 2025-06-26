@@ -45,7 +45,7 @@ export default {
         //console.log("[Worker Debug] GCLID and Gbraid no parameter found."); // DEBUG
       }
       const gclidValue = url.searchParams.get("gclid") || url.searchParams.get("gbraid") || url.searchParams.get("wbraid") || "";
-      //console.log(`[Worker Debug] GCLID   value: ${gclidValue}`); // DEBUG
+      //console.log(`[Worker Debug] GCLID  value: ${gclidValue}`); // DEBUG
 
       let finalDestinationUrl = brandData.baseUrl;
       let queryStringTemplate = brandData.fullQueryStringTemplate || "";
