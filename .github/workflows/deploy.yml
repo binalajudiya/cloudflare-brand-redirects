@@ -73,9 +73,10 @@ jobs:
           
 
           # NEW: Step to auto-create/verify D1 table
-          echo "    Executing D1 schema migration for click_log table..."
-          wrangler d1 execute "${{ env.D1_DB_ID }}" --remote --account-id "$CLOUDFLARE_ACCOUNT_ID" --command "CREATE TABLE IF NOT EXISTS click_log (id TEXT PRIMARY KEY, timestamp TEXT NOT NULL, gclid TEXT, final_url TEXT NOT NULL);"
-          echo "    D1 schema migration complete."
+          wrangler d1 execute "$D1_DB_ID" \
+          --remote \
+          --config wrangler.temp.toml \
+          --command "CREATE TABLE IF NOT EXISTS click_log (id TEXT PRIMARY KEY, timestamp TEXT NOT NULL, gclid TEXT, final_url TEXT NOT NULL);"
 
           # --- Step B: Deploy Worker Code for the current account ---
           # Generate lowercase name in shell

@@ -2,10 +2,12 @@ name = "au-redirects"
 main = "worker.js"
 compatibility_date = "2024-06-23"
 
+[observability.logs]
+enabled = true
 
-# Corrected Observability Logs configuration
-[observability] # <--- Use this explicit sub-table header
-enabled = true       # <--- Define 'enabled' directly under this sub-table
+# These will be replaced dynamically in your GitHub Action
+account_id = "REPLACED_ACCOUNT_ID"
+workers_dev = true
 
 [vars]
 AU_PREFIX = "REPLACED_AU_PREFIX"
