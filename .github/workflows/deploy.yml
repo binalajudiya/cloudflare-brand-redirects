@@ -72,12 +72,6 @@ jobs:
 
           
 
-          # NEW: Step to auto-create/verify D1 table
-          wrangler d1 execute "$D1_DB_ID" \
-          --remote \
-          --config wrangler.temp.toml \
-          --command "CREATE TABLE IF NOT EXISTS click_log (id TEXT PRIMARY KEY, timestamp TEXT NOT NULL, gclid TEXT, final_url TEXT NOT NULL);"
-
           # --- Step B: Deploy Worker Code for the current account ---
           # Generate lowercase name in shell
           NAME="$(echo '${{ matrix.account }}' | tr '[:upper:]' '[:lower:]')-redirect"
@@ -92,6 +86,14 @@ jobs:
           sed -i "s|REPLACED_DYN2|$DYN2_VALUE|g" wrangler.temp.toml # NEW: Replace DYN2
           sed -i "s|REPLACED_DYN3|$DYN3_VALUE|g" wrangler.temp.toml # NEW: Replace DYN3
           sed -i "s|REPLACED_D1_DB_ID|$D1_DB_ID|g" wrangler.temp.toml # NEW: Replace D1 DB ID placeholder
+
+
+
+          # NEW: Step to auto-create/verify D1 table
+          wrangler d1 execute "$D1_DB_ID" \
+          --remote \
+          --config wrangler.temp.toml \
+          --command "CREATE TABLE IF NOT EXISTS click_log (id TEXT PRIMARY KEY, timestamp TEXT NOT NULL, gclid TEXT, final_url TEXT NOT NULL);"
 
           # Deploy using the temp config
           wrangler deploy \
