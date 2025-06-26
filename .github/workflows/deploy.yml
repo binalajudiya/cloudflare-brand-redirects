@@ -19,12 +19,9 @@ jobs:
     strategy:
       matrix:
         include: 
-          - account: "AU218"
+          - account: "AU210"
             dyn2_val: "33" # Example value for AU218 - Websites
             dyn3_val: "30" # Example value for AU218 - Campaigns
-          - account: "AU214"
-            dyn2_val: "21" # Example value for AU218 - Websites
-            dyn3_val: "17" # Example value for AU218 - Campaigns
     
     # These environment variables are set for EACH matrix run.
     # We use the 'format' function to dynamically select the correct secret based on matrix.account.
@@ -32,6 +29,7 @@ jobs:
       CLOUDFLARE_API_TOKEN: ${{ secrets[format('CLOUDFLARE_API_TOKEN_{0}', matrix.account)] }} 
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets[format('CLOUDFLARE_ACCOUNT_ID_{0}', matrix.account)] }}
       KV_NAMESPACE_ID: ${{ secrets[format('KV_NAMESPACE_ID_{0}', matrix.account)] }}
+      D1_DB_ID: ${{ secrets[format('D1_DB_ID_{0}', matrix.account)] }} 
 
     steps:
       - name: Checkout repository
@@ -69,6 +67,7 @@ jobs:
           echo "  AU Prefix for Worker: $AU_PREFIX"
           echo "  DYN2 Value for Worker: $DYN2_VALUE"
           echo "  DYN3 Value for Worker: $DYN3_VALUE"
+          echo "  D1 Database ID: $D1_DB_ID" #  For debugging
           echo "  Resolved CLOUDFLARE_API_TOKEN (masked): $CLOUDFLARE_API_TOKEN"
 
           # --- Step A: Update KV Data for the current account ---
@@ -81,6 +80,11 @@ jobs:
             wrangler kv key put "$ID" "$VALUE" --namespace-id "$KV_NAMESPACE_ID" --remote
           done
           echo "    KV data update complete for ${{ matrix.account }}."
+
+          # NEW: Step to auto-create/verify D1 table
+          echo "    Executing D1 schema migration for click_log table..."
+          wrangler d1 execute "${{ env.D1_DB_ID }}" --remote --command "CREATE TABLE IF NOT EXISTS click_log (id TEXT PRIMARY KEY, timestamp TEXT NOT NULL, gclid TEXT, final_url TEXT NOT NULL);"
+          echo "    D1 schema migration complete."
 
           # --- Step B: Deploy Worker Code for the current account ---
           # Generate lowercase name in shell
@@ -95,6 +99,7 @@ jobs:
           sed -i "s/REPLACED_AU_PREFIX/$AU_PREFIX/g" wrangler.temp.toml
           sed -i "s|REPLACED_DYN2|$DYN2_VALUE|g" wrangler.temp.toml # NEW: Replace DYN2
           sed -i "s|REPLACED_DYN3|$DYN3_VALUE|g" wrangler.temp.toml # NEW: Replace DYN3
+          sed -i "s|REPLACED_D1_DB_ID|$D1_DB_ID|g" wrangler.temp.toml # NEW: Replace D1 DB ID placeholder
 
           # Deploy using the temp config
           wrangler deploy \
