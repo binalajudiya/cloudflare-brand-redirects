@@ -92,7 +92,7 @@ export default {
             const ip = request.headers.get("cf-connecting-ip") || ""; // Cloudflare-provided IP
 
             const insertStmt = env.CLICKDB.prepare(
-            `INSERT INTO click_log (id, timestamp, gclid, final_url) VALUES (?, ?, ?, ?)`
+            `INSERT INTO click_log (id, ip, timestamp, gclid, final_url) VALUES (?, ?, ?, ?)`
             );
         
             await insertStmt.bind(
@@ -103,7 +103,7 @@ export default {
             finalDestinationUrl                              // final_url
             ).run();
         } catch (dbError) {
-            console.error("D1 insert error:", dbError.message);
+            console.error("CLICKDB insert error:", dbError.message);
         }
         // --- END D1 Database Logging ---
       
