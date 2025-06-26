@@ -50,7 +50,7 @@ export default {
       let finalDestinationUrl = brandData.baseUrl;
       let queryStringTemplate = brandData.fullQueryStringTemplate || "";
       //console.log(`[Worker Debug] Base URL from KV: ${finalDestinationUrl}`); // DEBUG
-      //console.log(`[Worker Debug] Query String Template from KV: ${queryStringTemplate}`); // DEBUG
+      //console.log(`[Worker Debug] Query String Template  from KV: ${queryStringTemplate}`); // DEBUG
 
       // Replace {ACCOUNT_PREFIX}
       if (env.AU_PREFIX) {
