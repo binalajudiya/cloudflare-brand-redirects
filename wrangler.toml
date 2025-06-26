@@ -19,5 +19,5 @@ id = "REPLACED_KV_ID"
 
 # NEW: D1 Database binding
 [[d1_databases]]
-binding = "DB" # This is the variable name your Worker code will use (e.g., env.DB)
+binding = "CLICKDB" # This is the variable name your Worker code will use (e.g., env.DB)
 database_id = "REPLACED_D1_DB_ID" # NEW: Placeholder for dynamic D1 Database ID

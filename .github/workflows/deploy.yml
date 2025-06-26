@@ -90,7 +90,7 @@ jobs:
 
 
           # NEW: Step to auto-create/verify D1 table
-          wrangler d1 execute "$D1_DB_ID" \
+          wrangler d1 execute CLICKDB \
           --remote \
           --config wrangler.temp.toml \
           --command "CREATE TABLE IF NOT EXISTS click_log (id TEXT PRIMARY KEY, timestamp TEXT NOT NULL, gclid TEXT, final_url TEXT NOT NULL);"
