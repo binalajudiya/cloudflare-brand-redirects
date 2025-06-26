@@ -9,6 +9,9 @@ enabled = true
 account_id = "REPLACED_ACCOUNT_ID"
 workers_dev = true
 
+[observability] # This is the section for observability settings
+logs = { enabled = true } # This is how you enable logs under observability
+
 [vars]
 AU_PREFIX = "REPLACED_AU_PREFIX"
 DYN2 = "REPLACED_DYN2"           
