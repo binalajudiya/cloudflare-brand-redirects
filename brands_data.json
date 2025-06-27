@@ -26,7 +26,7 @@
   },
   {
     "id": "6",
-    "baseUrl": "https://luckycircus.partners/jfc30716d",
+    "baseUrl": "https://luckycircus.partners/j5ecba549",
     "fullQueryStringTemplate": "?subid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2={DYN2}&dyn3={DYN3}"
   },
   {
