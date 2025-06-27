@@ -79,6 +79,17 @@ jobs:
             exit 1
           fi
 
+          # Create a temporary wrangler config for this environment
+          cp wrangler.toml wrangler.temp.toml
+
+          # Replace placeholders in the temp config with actual values
+          sed -i "s/REPLACED_ACCOUNT_ID/$CLOUDFLARE_ACCOUNT_ID/g" wrangler.temp.toml
+          sed -i "s/REPLACED_KV_ID/$KV_NAMESPACE_ID/g" wrangler.temp.toml
+          sed -i "s/REPLACED_AU_PREFIX/$AU_PREFIX/g" wrangler.temp.toml
+          sed -i "s|REPLACED_DYN2|$DYN2_VALUE|g" wrangler.temp.toml # NEW: Replace DYN2
+          sed -i "s|REPLACED_DYN3|$DYN3_VALUE|g" wrangler.temp.toml # NEW: Replace DYN3
+          sed -i "s|REPLACED_D1_DB_ID|$D1_DB_ID|g" wrangler.temp.toml # NEW: Replace D1 DB ID placeholder
+
           # --- Step A: Update KV Data for the current account ---
           jq -c '.[]' brands_data.json | while read -r line; do
             ID=$(echo "$line" | jq -r '.id')
@@ -96,19 +107,6 @@ jobs:
           # --- Step B: Deploy Worker Code for the current account ---
           # Generate lowercase name in shell
           NAME="$(echo '${{ matrix.account }}' | tr '[:upper:]' '[:lower:]')-redirect"
-
-          # Create a temporary wrangler config for this environment
-          cp wrangler.toml wrangler.temp.toml
-
-          # Replace placeholders in the temp config with actual values
-          sed -i "s/REPLACED_ACCOUNT_ID/$CLOUDFLARE_ACCOUNT_ID/g" wrangler.temp.toml
-          sed -i "s/REPLACED_KV_ID/$KV_NAMESPACE_ID/g" wrangler.temp.toml
-          sed -i "s/REPLACED_AU_PREFIX/$AU_PREFIX/g" wrangler.temp.toml
-          sed -i "s|REPLACED_DYN2|$DYN2_VALUE|g" wrangler.temp.toml # NEW: Replace DYN2
-          sed -i "s|REPLACED_DYN3|$DYN3_VALUE|g" wrangler.temp.toml # NEW: Replace DYN3
-          sed -i "s|REPLACED_D1_DB_ID|$D1_DB_ID|g" wrangler.temp.toml # NEW: Replace D1 DB ID placeholder
-
-
 
           # NEW: Step to auto-create/verify D1 table
           wrangler d1 execute CLICKDB \
