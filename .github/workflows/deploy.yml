@@ -73,6 +73,12 @@ jobs:
           echo "  D1 Database ID: $D1_DB_ID" #  For debugging
           echo "  Resolved CLOUDFLARE_API_TOKEN (masked): $CLOUDFLARE_API_TOKEN"
 
+          if grep -q "REPLACED_ACCOUNT_ID" wrangler.temp.toml; then
+            echo "❌ ERROR: REPLACED_ACCOUNT_ID was not replaced properly!"
+            cat wrangler.temp.toml
+            exit 1
+          fi
+
           # --- Step A: Update KV Data for the current account ---
           jq -c '.[]' brands_data.json | while read -r line; do
             ID=$(echo "$line" | jq -r '.id')
@@ -80,7 +86,10 @@ jobs:
             
             echo "    Uploading KV key: $ID"
             # Use --remote to ensure it connects to Cloudflare's servers
-            wrangler kv key put "$ID" "$VALUE" --namespace-id "$KV_NAMESPACE_ID" --remote
+            wrangler kv key put "$ID" "$VALUE" \
+              --namespace-id "$KV_NAMESPACE_ID" \
+              --remote \
+              --config wrangler.temp.toml
           done
           echo "    KV data update complete for ${{ matrix.account }}."
 
