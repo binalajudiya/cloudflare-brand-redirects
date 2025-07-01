@@ -5,7 +5,7 @@ export default {
       const url = new URL(request.url);
       const pathSegments = url.pathname.split("/").filter(Boolean);
 
-      //console.log(`[Worker Debug] Incoming request path: ${url.pathname}`); // DEBUG
+      //console.log(`[Work er Debug] Incoming request path: ${url.pathname}`); // DEBUG
 
       if (pathSegments.length < 2 || pathSegments[0] !== "click") {
         //console.log("[Worker Debug] Invalid path format or not a click request."); // DEBUG
