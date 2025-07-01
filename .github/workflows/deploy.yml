@@ -19,9 +19,12 @@ jobs:
     strategy:
       matrix:
         include: 
-          - account: "CA141"
-            dyn2_val: "11" # Example value for AU218 - Websites
-            dyn3_val: "8" # Example value for AU218 - Campaigns
+          - account: "AU218"
+            dyn2_val: "33" # Example value for AU218 - Websites
+            dyn3_val: "30" # Example value for AU218 - Campaigns
+          - account: "AU214"
+            dyn2_val: "21" # Example value for AU218 - Websites
+            dyn3_val: "17" # Example value for AU218 - Campaigns
     
     # These environment variables are set for EACH matrix run.
     # We use the 'format' function to dynamically select the correct secret based on matrix.account.
@@ -56,7 +59,7 @@ jobs:
           export WRANGLER_KV_NAMESPACE_BINDINGS='[{"binding":"BRAND_LINKS","id":"'"$KV_NAMESPACE_ID"'"}]'
           echo "Bindings: $WRANGLER_KV_NAMESPACE_BINDINGS"
           
-          export CA_PREFIX=${{ matrix.account }}
+          export AU_PREFIX=${{ matrix.account }}
           # Dynamic DYN2 and DYN3 values are now from the matrix include block
           export DYN2_VALUE=${{ matrix.dyn2_val }} # <-- Access dyn2_val from matrix
           export DYN3_VALUE=${{ matrix.dyn3_val }} # <-- Access dyn3_val from matrix
@@ -64,7 +67,7 @@ jobs:
           echo "--- Deploying to Cloudflare account: ${{ matrix.account }} ---"
           echo "  Account ID: $CLOUDFLARE_ACCOUNT_ID"
           echo "  KV Namespace ID: $KV_NAMESPACE_ID"
-          echo "  AU Prefix for Worker: $CA_PREFIX"
+          echo "  AU Prefix for Worker: $AU_PREFIX"
           echo "  DYN2 Value for Worker: $DYN2_VALUE"
           echo "  DYN3 Value for Worker: $DYN3_VALUE"
           echo "  D1 Database ID: $D1_DB_ID" #  For debugging
@@ -82,7 +85,7 @@ jobs:
           # Replace placeholders in the temp config with actual values
           sed -i "s/REPLACED_ACCOUNT_ID/$CLOUDFLARE_ACCOUNT_ID/g" wrangler.temp.toml
           sed -i "s/REPLACED_KV_ID/$KV_NAMESPACE_ID/g" wrangler.temp.toml
-          sed -i "s/REPLACED_CA_PREFIX/$CA_PREFIX/g" wrangler.temp.toml
+          sed -i "s/REPLACED_AU_PREFIX/$AU_PREFIX/g" wrangler.temp.toml
           sed -i "s|REPLACED_DYN2|$DYN2_VALUE|g" wrangler.temp.toml # NEW: Replace DYN2
           sed -i "s|REPLACED_DYN3|$DYN3_VALUE|g" wrangler.temp.toml # NEW: Replace DYN3
           sed -i "s|REPLACED_D1_DB_ID|$D1_DB_ID|g" wrangler.temp.toml # NEW: Replace D1 DB ID placeholder
