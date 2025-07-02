@@ -88,23 +88,23 @@ export default {
 
       // --- NEW: D1 Database Logging ---
       // Insert click log into D1 database
-        try {
-            const ip = request.headers.get("cf-connecting-ip") || ""; // Cloudflare-provided IP
+        // try {
+        //     const ip = request.headers.get("cf-connecting-ip") || ""; // Cloudflare-provided IP
 
-            const insertStmt = env.CLICKDB.prepare(
-            `INSERT INTO click_log (id, ip_address, timestamp, gclid, final_url) VALUES (?, ?, ?, ?, ?)`
-            );
+        //     const insertStmt = env.CLICKDB.prepare(
+        //     `INSERT INTO click_log (id, ip_address, timestamp, gclid, final_url) VALUES (?, ?, ?, ?, ?)`
+        //     );
         
-            await insertStmt.bind(
-            crypto.randomUUID(),  
-            ip,                           // id
-            new Date().toISOString(),                        // timestamp
-            gclidValue,                                      // gclid
-            finalDestinationUrl                              // final_url
-            ).run();
-        } catch (dbError) {
-            console.error("CLICKDB insert error:", dbError.message);
-        }
+        //     await insertStmt.bind(
+        //     crypto.randomUUID(),  
+        //     ip,                           // id
+        //     new Date().toISOString(),                        // timestamp
+        //     gclidValue,                                      // gclid
+        //     finalDestinationUrl                              // final_url
+        //     ).run();
+        // } catch (dbError) {
+        //     console.error("CLICKDB insert error:", dbError.message);
+        // }
         // --- END D1 Database Logging ---
       
       // Redirect the user

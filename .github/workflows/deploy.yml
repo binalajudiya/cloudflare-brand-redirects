@@ -19,12 +19,9 @@ jobs:
     strategy:
       matrix:
         include: 
-          - account: "AU218"
-            dyn2_val: "33" # Example value for AU218 - Websites
-            dyn3_val: "30" # Example value for AU218 - Campaigns
-          - account: "AU214"
-            dyn2_val: "21" # Example value for AU218 - Websites
-            dyn3_val: "17" # Example value for AU218 - Campaigns
+          - account: "AU217"
+            dyn2_val: "44" # Example value for AU218 - Websites
+            dyn3_val: "41" # Example value for AU218 - Campaigns
     
     # These environment variables are set for EACH matrix run.
     # We use the 'format' function to dynamically select the correct secret based on matrix.account.
@@ -109,10 +106,10 @@ jobs:
           NAME="$(echo '${{ matrix.account }}' | tr '[:upper:]' '[:lower:]')-redirect"
 
           # NEW: Step to auto-create/verify D1 table
-          wrangler d1 execute CLICKDB \
-          --remote \
-          --config wrangler.temp.toml \
-          --command "CREATE TABLE IF NOT EXISTS click_log (id TEXT PRIMARY KEY, ip_address TEXT, timestamp TEXT NOT NULL, gclid TEXT, final_url TEXT NOT NULL);"
+          #wrangler d1 execute CLICKDB \
+          #--remote \
+          #--config wrangler.temp.toml \
+          #--command "CREATE TABLE IF NOT EXISTS click_log (id TEXT PRIMARY KEY, ip_address TEXT, timestamp TEXT NOT NULL, gclid TEXT, final_url TEXT NOT NULL);"
 
           # Deploy using the temp config
           wrangler deploy \
