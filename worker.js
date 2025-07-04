@@ -28,7 +28,7 @@ export default {
       let brandData;
       try {
         brandData = JSON.parse(brandDataString); // Parse the JSON from KV
-        //console.log(`[Worker Debug] Parsed KV data for ID ${linkId}: ${JSON.stringify(brandData)}`); // DEBUG
+        //console.log(`[Worke Debug] Parsed KV data for ID ${linkId}: ${JSON.stringify(brandData)}`); // DEBUG
       } catch (jsonError) {
         console.error(`[Worker Error] Failed to parse JSON from KV for ID ${linkId}: ${jsonError.message}. Raw data: ${brandDataString}`); // DEBUG ERROR
         return new Response("Server Error: Invalid KV data format", { status: 500 });
