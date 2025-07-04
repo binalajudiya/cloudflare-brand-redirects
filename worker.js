@@ -84,7 +84,7 @@ export default {
 
       // Concatenate base URL and the processed query string
       finalDestinationUrl += queryStringTemplate;
-      //console.log(`[Worker Debug] Final Redirection URL: ${finalDestinationUrl}`); // DEBUG
+      //console.log(`[Worker Debug]Final Redirection URL: ${finalDestinationUrl}`); // DEBUG
 
       // --- NEW: D1 Database Logging ---
       // Insert click log into D1 database
