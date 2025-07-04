@@ -467,6 +467,6 @@
   {
     "id": "94",
     "baseUrl": "https://vgr.naralvin.com/",
-    "fullQueryStringTemplate": "?mid=264616_1759440&clickid="
+    "fullQueryStringTemplate": "?mid=264616_1759440&clickid={ACCOUNT_PREFIX}-{clickid}&dyn1={externalid}&dyn2{DYN2}=3&dyn3={DYN3}"
   }
 ]
